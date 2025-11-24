@@ -182,7 +182,8 @@ class TestAnalysis1(unittest.TestCase):
     @patch('analyses.config.get_parameter')
     @patch('analyses.plt.show')
     @patch('analyses.pd.DataFrame.plot')
-    def test_run_with_valid_open_issues_creates_plot(self, mock_plot, mock_show, mock_config, mock_dataloader_class):
+    @patch('builtins.print')
+    def test_run_with_valid_open_issues_creates_plot(self, mock_print, mock_plot, mock_show, mock_config, mock_dataloader_class):
         """Test run with valid open issues to cover histogram plot creation"""
         mock_config.side_effect = lambda key, default=None: 'type' if key == 'category' else (5 if key == 'other_cutout' else default)
         mock_dataloader_class.return_value = self.mock_loader
@@ -223,7 +224,8 @@ class TestAnalysis1(unittest.TestCase):
     @patch('analyses.config.get_parameter')
     @patch('analyses.plt.show')
     @patch('analyses.pd.DataFrame.plot')
-    def test_run_with_valid_closed_issues_creates_plot(self, mock_plot, mock_show, mock_config, mock_dataloader_class):
+    @patch('builtins.print')
+    def test_run_with_valid_closed_issues_creates_plot(self, mock_print, mock_plot, mock_show, mock_config, mock_dataloader_class):
         """Test run with valid closed issues to cover histogram plot creation"""
         mock_config.side_effect = lambda key, default=None: 'type' if key == 'category' else (5 if key == 'other_cutout' else default)
         mock_dataloader_class.return_value = self.mock_loader
@@ -264,7 +266,8 @@ class TestAnalysis1(unittest.TestCase):
     @patch('analyses.config.get_parameter')
     @patch('analyses.plt.show')
     @patch('analyses.pd.DataFrame.plot')
-    def test_run_with_both_open_and_closed_issues(self, mock_plot, mock_show, mock_config, mock_dataloader_class):
+    @patch('builtins.print')
+    def test_run_with_both_open_and_closed_issues(self, mock_print, mock_plot, mock_show, mock_config, mock_dataloader_class):
         """Test run with both open and closed issues to cover all plot paths"""
         mock_config.side_effect = lambda key, default=None: 'type' if key == 'category' else (5 if key == 'other_cutout' else default)
         mock_dataloader_class.return_value = self.mock_loader
@@ -310,7 +313,8 @@ class TestAnalysis1(unittest.TestCase):
     @patch('analyses.config.get_parameter')
     @patch('analyses.plt.show')
     @patch('analyses.pd.DataFrame.plot')
-    def test_run_with_other_category_grouping(self, mock_plot, mock_show, mock_config, mock_dataloader_class):
+    @patch('builtins.print')
+    def test_run_with_other_category_grouping(self, mock_print, mock_plot, mock_show, mock_config, mock_dataloader_class):
         """Test run with issues that trigger 'other' grouping due to cutout threshold"""
         mock_config.side_effect = lambda key, default=None: 'type' if key == 'category' else (10 if key == 'other_cutout' else default)
         mock_dataloader_class.return_value = self.mock_loader
